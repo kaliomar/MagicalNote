@@ -97,7 +97,7 @@ class menubar(QMainWindow):
         opn_action.setShortcut('Ctrl+O')
         sav_action = QAction('Save',self)
         sav_action.setShortcut('Ctrl+S')
-        qut_action = QAction('&Quit',self)
+        qut_action = QAction('Quit',self)
         qut_action.setShortcut('Ctrl+Q')
 
         find_action = QAction('find...',self)
@@ -112,17 +112,14 @@ class menubar(QMainWindow):
         find_menu = edit.addMenu('Find')
         find_menu.addAction(find_action)
         find_menu.addAction(rplc_action)
+
         # actions signals and slots
-        qut_action.triggered.connect(self.quit_trigger)
         file.triggered.connect(self.respond)
 
         self.setWindowTitle('MenuTry')
         self.resize(400,300)
 
         self.show()
-
-    def quit_trigger(self):
-        qApp.quit()
 
     def respond(self,q):
         signal = q.text()
@@ -132,6 +129,8 @@ class menubar(QMainWindow):
             self.form_widget.sv_file()
         elif signal == 'Open':
             self.form_widget.opn_file()
+        elif signal == 'Quit':
+            qApp.quit()
 
 
 

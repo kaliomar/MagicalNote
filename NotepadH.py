@@ -133,7 +133,7 @@ class menubar(QMainWindow):
         elif signal == 'Open':
             self.form_widget.opn_file()
 
-
+#todo track
 app = QApplication(sys.argv)
 win = menubar()
 sys.exit(app.exec_())

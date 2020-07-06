@@ -34,7 +34,6 @@ class Note(QWidget):
         self.text.textChanged.connect(self.clr_statue)
 
         self.setLayout(v_layout)
-        self.setWindowTitle("Notepad")
 
         self.show()
 
@@ -116,7 +115,7 @@ class menubar(QMainWindow):
         # actions signals and slots
         file.triggered.connect(self.respond)
 
-        self.setWindowTitle('MenuTry')
+        self.setWindowTitle('Magical Note')
         self.resize(400,300)
 
         self.show()

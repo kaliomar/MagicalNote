@@ -76,8 +76,8 @@ class Note(QWidget):
 class menubar(QMainWindow):
     def __init__(self):
         super(menubar, self).__init__()
-        self.setWindowIcon(QIcon('image/edit.png'))
-
+        self.setWindowIcon(QIcon('image/programIcon.png'))
+        self.statusBar().showMessage('')
         self.form_widget = Note()
         self.setCentralWidget(self.form_widget)
 
@@ -86,27 +86,42 @@ class menubar(QMainWindow):
     def init_ui(self):
         # make a menu bar
         bar = self.menuBar()
+
         # make main menus
         file = bar.addMenu('File')
         edit = bar.addMenu('Edit')
+
         # make actions of menus
-        new_action = QAction('New',self)
+        new_icon = QIcon('image/new-file.png')
+        new_action = QAction(new_icon,'&New',self)
         new_action.setShortcut('Ctrl+N')
-        opn_action = QAction('Open',self)
+        new_action.setStatusTip('new file')
+
+        opn_icon = QIcon('image/open-file.png')
+        opn_action = QAction(opn_icon,'&Open',self)
         opn_action.setShortcut('Ctrl+O')
-        sav_action = QAction('Save',self)
+        opn_action.setStatusTip('open a file')
+
+        sav_icon = QIcon('image/save-file.png')
+        sav_action = QAction(sav_icon,'&Save',self)
         sav_action.setShortcut('Ctrl+S')
-        qut_action = QAction('Quit',self)
+        sav_action.setStatusTip('save current work')
+
+        qut_icon = QIcon('image/quit.png')
+        qut_action = QAction(qut_icon,'&Quit',self)
         qut_action.setShortcut('Ctrl+Q')
+        qut_action.setStatusTip('quit the program')
 
         find_action = QAction('find...',self)
         find_action.setShortcut('Ctrl+F')
         rplc_action = QAction('replace...',self)
         rplc_action.setShortcut('Ctrl+R')
+
         # put actions in their menus
         file.addAction(new_action)
         file.addAction(opn_action)
         file.addAction(sav_action)
+        file.addSeparator()
         file.addAction(qut_action)
         find_menu = edit.addMenu('Find')
         find_menu.addAction(find_action)
@@ -122,13 +137,13 @@ class menubar(QMainWindow):
 
     def respond(self,q):
         signal = q.text()
-        if signal == 'New':
+        if signal == '&New':
             self.form_widget.clr_text()
-        elif signal == 'Save':
+        elif signal == '&Save':
             self.form_widget.sv_file()
-        elif signal == 'Open':
+        elif signal == '&Open':
             self.form_widget.opn_file()
-        elif signal == 'Quit':
+        elif signal == '&Quit':
             qApp.quit()
 
 
